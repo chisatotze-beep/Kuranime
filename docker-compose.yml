@@ -1,0 +1,13 @@
+services:
+  kura:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5000:5000" # hanya bisa diakses lewat Nginx di server yang sama
+    environment:
+      - DB_FILE=/data/kura.db
+      - TRUST_PROXY=1
+    volumes:
+      - kura-data:/data
+volumes:
+  kura-data:
